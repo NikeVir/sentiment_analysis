@@ -23,23 +23,23 @@
   </head>
   <body>
     
-    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" data-aos="fade-down" data-aos-delay="500">
+    <nav class="navbar" id="ftco-navbar" data-aos="fade-down" data-aos-delay="500">
       <div class="container">
-        <a class="navbar-brand" href="/">Home</a>
-        <div class="collapse navbar-collapse" id="ftco-nav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="/sentiment" class="nav-link">Sentiment Analysis</a></li>
-          </ul>
-        </div>
+          <a class="navbar-brand" href="/"><i class="fas fa-home"></i>Home</a>
+          <div class="collapse navbar-collapse" id="ftco-nav">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item"><a href="/sentiment" class="nav-link">Sentiment Analysis</a></li>
+              </ul>
+          </div>
       </div>
-    </nav>
+  </nav>
     <!-- END nav -->
 
 
-    <section class="ftco-cover"  id="section-home" style="background-image: url({% static 'home/images/429j3F.png' %});"  data-aos="fade"  data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center ftco-vh-100">
-          <div class="col-md-7">
+    <section class="ftco-cover"  id="section-home" style="    background: 50% -60px rgb(0, 123, 255);width: 100%;"  data-aos="fade"  data-stellar-background-ratio="0.5">
+      <div style="display: flex;justify-content: center;"class="container">
+        <div style="display:flex;justify-content:centre;align-item:center" class="row align-items-center ftco-vh-100">
+          <div style = "position:static;width80%" class="col-md-7">
           	<br>
           	<br>
           	<br>
@@ -51,17 +51,17 @@
               <div class="row">
                   {% ifequal sentiment 'Positive' %}
                   <div class="box counter-left md-5 col-2" data-aos="fade-up" data-aos-delay="700">
-                  <img src="{% static 'icons/combo_positive_glow.png' %}">
+                  <img style="width:100%" src="{% static 'icons/combo_positive_glow1.png' %}">
                   </div>
                   {% endifequal %}
                   {% ifequal sentiment 'Neutral' %}
                   <div class="box counter-left md-5 col-2" data-aos="fade-up" data-aos-delay="700">
-                  <img src="{% static 'icons/combo_neutral_glow.png' %}">
+                  <img style="width:100%" src="{% static 'icons/combo_neutral_glow1.png' %}">
                   </div>
                   {% endifequal %}
                   {% ifequal sentiment 'Negative' %}
                   <div class="box counter-left md-5 col-2" data-aos="fade-up" data-aos-delay="700">
-                  <img src="{% static 'icons/combo_negative_glow.png' %}">
+                  <img style="width:100%" src="{% static 'icons/combo_negative_glow1.png' %}">
                   </div>
                   {% endifequal %}
 

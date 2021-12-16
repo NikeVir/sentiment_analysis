@@ -5,7 +5,7 @@
     <title>Sentiment Analysis of Imported Tweet</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <link rel="stylesheet" href="{% static 'insertion/css/main.css' %}">
+   <link rel="stylesheet" href="{% static 'insertion/css/main2.css' %}">
 
     <!-- searchbox css -->
     <link rel="stylesheet" href="{% static 'type/css/searchbox.css' %}">
@@ -42,7 +42,7 @@
     <section class="ftco-cover"  id="section-home" style="background-image: url({% static 'home/images/twitter-background-wallpaper-hd-9.jpg' %});"  data-aos="fade"  data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center ftco-vh-100">
-          <div class="col-md-8">
+          <div style="position:static;display:flex;flex-direction:column;align-items: center;justify-content:center" class="col-md-8">
             <h1 class="ftco-heading mb-3" data-aos="fade-up" data-aos-delay="500">Sentiment Analysis</h1>
             <h2 class="h5 ftco-subheading mb-5" data-aos="fade-up"  data-aos-delay="600">Categorises tweet under Positive, Neutral or Negative</h2>
               <div class="row">
@@ -61,7 +61,7 @@
 
 
 
-<div class="page" data-aos="fade-up" data-aos-delay="800">
+<div style="position:static" class="page" data-aos="fade-up" data-aos-delay="800">
   <div class="page__demo">
     <form class="search" method="post">
       {% csrf_token %}

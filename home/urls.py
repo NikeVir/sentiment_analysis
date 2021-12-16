@@ -6,4 +6,5 @@ app_name = 'home'
 
 urlpatterns = [
     url(r'^$', views.choose_sentiment, name="choose_sentiment"),
+    
 ]

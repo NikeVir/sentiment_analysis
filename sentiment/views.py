@@ -30,13 +30,25 @@ def sentiment_analysis_import(request):
 
         if form.is_valid():
             handle = form.cleaned_data['sentiment_imported_tweet']
+            pos = 0
+            neu = 0
+            neg = 0
 
             if handle[0]=='#':
                 list_of_tweets = tweet_text.get_hashtag(handle)
                 list_of_tweets_and_sentiments = []
                 for i in list_of_tweets:
                     list_of_tweets_and_sentiments.append((i,analyse.get_tweet_sentiment(i)))
-                args = {'list_of_tweets_and_sentiments':list_of_tweets_and_sentiments, 'handle':handle}
+                    
+                for i,j in list_of_tweets_and_sentiments:
+                    if j =="Negative":
+                        neg = neg + 1
+                    elif j == "Positive":
+                        pos = pos+1
+                    else : 
+                        neu = neu +1
+                        
+                args = {'list_of_tweets_and_sentiments':list_of_tweets_and_sentiments, 'handle':handle,'neg':neg,'pos':pos,"neu":neu}
                 return render(request, 'home/sentiment_import_result_hashtag.html', args)
 
             list_of_tweets = tweet_text.get_tweets(handle)
@@ -45,7 +57,16 @@ def sentiment_analysis_import(request):
                 handle = str('@'+handle)
             for i in list_of_tweets:
                 list_of_tweets_and_sentiments.append((i,analyse.get_tweet_sentiment(i)))
-            args = {'list_of_tweets_and_sentiments':list_of_tweets_and_sentiments, 'handle':handle}
+                
+            for i,j in list_of_tweets_and_sentiments:
+                if j =="Negative":
+                    neg = neg + 1
+                elif j == "Positive":
+                    pos = pos+1
+                else : 
+                    neu = neu +1
+            
+            args = {'list_of_tweets_and_sentiments':list_of_tweets_and_sentiments, 'handle':handle,'neg':neg,'pos':pos,"neu":neu}
             return render(request, 'home/sentiment_import_result.html', args)
 
     else:

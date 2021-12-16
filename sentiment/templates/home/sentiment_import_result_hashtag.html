@@ -18,7 +18,10 @@
     <link href="{% static 'lapsus/css/font-awesome.min.css' %}" rel="stylesheet">   
     <!-- Custom CSS -->
     <link href="{% static 'lapsus/css/style.css' %}" rel="stylesheet">
-
+    <script
+    type="text/javascript"
+    src="https://www.gstatic.com/charts/loader.js"
+  ></script>
 
   </head>
   <body>
@@ -61,12 +64,60 @@
   </div>
           </div>
     </section>
+
+      <div style="padding:20px;display:flex;flex-wrap:wrap;align-items: center; justify-content: center" class = 'main_chart'>
+        <h1>Data in Pie Chart Form</h1>
+        <div 
+        style="position: relative;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-basis:100%;
+        min-width:100%;
+        margin:10px 20%;
+        border:6px solid #007bff"
+        id="piechart"></div> 
+        <br/>
+        <h1>Data in Bar Graph Form</h1>
+        <div style="position: relative;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-basis:100%;
+        min-width:100%;
+        margin:10px 20%;
+        border:6px solid #007bff;
+        height:500px"
+        id="myChart" style="width:100%; max-width:100%; height:500px;"></div>
+      </div>
     <!-- END section -->
     
     <!-- END section -->
+    <button
+    style="
+      margin-bottom: 50px;
+      padding:10px;
+      width: 200px;
+      height: 50px;
+      display: inline;
+      position: relative;
+      left: 42%;
+      border: none;
+      background-color: #007bff;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+    "
+    onclick="myFunction()"
+    id ="myDIV2"
+  >
+    Show Tweets
+  </button>
 
-
-    <table class="table"cellpadding="0" cellspacing="0" border="0">
+  <section id="myDIV" style="display:none">
+    <table  class="table"cellpadding="0" cellspacing="0" border="0">
       <thead class="bg-primary">
         <tr>
           <th><h5 style="color:white; font-weight: 500;">Tweet</h5></th>
@@ -94,6 +145,105 @@
         {% endfor %}
       </tbody>
     </table>
+  </section>
+    {% comment %} {% set pos = 0 %}
+    {% set neu = 0 %}
+    {% set neg = 0 %}
+    {% for i,j in list_of_tweets_and_sentiments%} 
+    {% ifequal j 'Negative' %} 
+      {% neg = neg+1 %} 
+    {% endifequal %} 
+    {% ifequal j 'Positive'%} 
+      {% pos = pos+1 %} 
+    {% endifequal %} 
+    {% ifequal j 'Neutral'%} 
+      {% neu = neu+1 %}
+    {% endfor %} {% endcomment %}
+    
+
+
+
+    
+
+    <script type="text/javascript">
+      // Load google charts
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+      var pos = "{{pos}}"
+      var a = parseInt(pos);
+      var neg = "{{neg}}"
+      var b = parseInt(neg);
+
+      var neu = "{{neu}}"
+      var c = parseInt(neu);
+
+
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["type", "data"],
+          ["positive", a],
+          ["neutral", b],
+          ["negative", c],
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = { title: "Sentimental Analysis", width: 800, height: 500 };
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(
+          document.getElementById("piechart")
+        );
+        chart.draw(data, options);
+      }
+    </script>
+
+
+    <script>
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      var pos = "{{pos}}"
+      var a = parseInt(pos);
+      var neg = "{{neg}}"
+      var b = parseInt(neg);
+
+      var neu = "{{neu}}"
+      var c = parseInt(neu);
+      
+      function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['sentiment', 'numbers'],
+        ['Positive',a],
+        ['Negative',b],
+        ['Neutral',c]
+      ]);
+      
+      var options = {
+        title:'World Wide Wine Production'
+      };
+      
+      var chart = new google.visualization.BarChart(document.getElementById('myChart'));
+        chart.draw(data, options);
+      }
+      </script>
+      <script>
+        function myFunction() {
+          
+          var y = document.getElementById("myDIV2");
+          if (y.innerHTML === "Show Tweets") {
+            y.innerHTML = "Hide tweets!";
+          } else {
+            y.innerHTML = "Show Tweets";
+          }
+          var x = document.getElementById("myDIV");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "none";
+          }
+        }
+      </script>
+
 
 
 
